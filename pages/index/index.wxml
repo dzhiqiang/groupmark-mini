@@ -1,0 +1,34 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="body">
+      <view class="navigator_item">
+      <navigator class="navigator" url="/pages/create/create" hover-class="navigator-hover">记一笔
+      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+      <view class="line"></view>
+      </navigator>
+      <navigator class="navigator" url="/pages/mygroup/mygroup" hover-class="navigator-hover">
+      <text class="navigator_name">我的团</text>
+      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+      </navigator>
+      <navigator class="navigator" url="/pages/account/account" hover-class="navigator-hover">
+      <text class="navigator_name">我的记账</text>
+      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+      </navigator>
+      <navigator class="navigator" url="/pages/share/share" hover-class="navigator-hover">
+      <text class="navigator_name">需分摊的记账</text>
+      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+      </navigator>
+      <navigator class="navigator" url="/pages/set/set" hover-class="navigator-hover">
+      <text class="navigator_name">结算记录</text>
+      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+      </navigator>
+    </view>
+  </view>
+</view>
