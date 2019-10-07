@@ -1,1 +1,49 @@
-/* pages/share/share.wxss */
+.navigator{
+  height:50px;
+  position: relative;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.navigator_arrow{
+    position: absolute;
+    top: 17px;
+    right: 22px;
+    width: 8px;
+    height: 16px;
+}
+.accountinfo_project{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    width: 60%;
+    height: 20px;
+    font-size: 15px;
+}
+.accountinfo_status{
+    position: absolute;
+    top: 5px;
+    left: 65%;
+    width: 35%;
+    height: 20px;
+    font-size: 15px;
+}
+.accountinfo_group{
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    width: 50%;
+    height: 20px;
+    font-size: 15px;
+}
+.accountinfo_money{
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    width: 150px;
+    height: 20px;
+    font-size: 15px;
+}
+
+

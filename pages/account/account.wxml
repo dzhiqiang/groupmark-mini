@@ -1,2 +1,23 @@
-<!--pages/account/account.wxml-->
-<text>pages/account/account.wxml</text>
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <navigator class="navigator" url="/pages/account/accountinfo/accountinfo" hover-class="navigator-hover">
+                <view><text class="accountinfo_project">买水果买水果买水果买水</text>
+                </view>
+                <view><text class="accountinfo_group">425团</text>
+                </view>
+                <view><text class="accountinfo_money">10000000元</text>
+                </view>
+                <view><text class="accountinfo_status">已结</text>
+                </view>
+                <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+              </navigator>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>

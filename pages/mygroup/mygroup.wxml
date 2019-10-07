@@ -1,5 +1,21 @@
 <view class="container">
   <view class="page-body">
-    
+    <view class="btn-area">
+      <view class="button-wrapper">
+        <button type="primary" bindtap="createGroup">新建团</button>
+      </view>
+    </view>
+    <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <navigator class="navigator" url="/pages/mygroup/mygroupinfo/mygroupinfo?groupId=1&title=段贾孙团" hover-class="navigator-hover">
+                <text class="navigator_name">段贾孙团</text>
+                <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+              </navigator>
+            </view>
+          </view>
+        </view>
+      </view>
   </view>
 </view>

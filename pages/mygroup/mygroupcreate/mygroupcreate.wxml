@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <view class="page-section-title">输入团名称</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input weui-input-rightbutton" name="input" placeholder="输入团名"/>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page-section">
+      <view class="page-section-title">输入加成员</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input weui-input-rightbutton" name="input" value="{{inputMemberAliasName}}" placeholder="输入团员别名"  bindinput="inputMemberAliasNameChange"/>
+            <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini" bindtap="joinGroup">加入</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page-section">
+      <view class="page-section-title">点击别名修改</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input" wx:for-items="{{memberList}}" wx:for-item="member">
+          <view class="weui-cell__bd">
+            <input class="weui-input weui-input-rightbutton" name="input" placeholder="" value="{{member}}" />
+            <button class="mini-btn mini-btn-rightbutton" type="warn" size="mini" bindtap="deleteMember" data-index="{{index}}">删除</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <modal hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+</view>

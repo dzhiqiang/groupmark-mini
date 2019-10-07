@@ -1,22 +1,20 @@
-// pages/mycreate/mycreate.js
+// pages/mygroup/mygroupinfo/mygroupinfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    
+  },
 
-  },
-  createGroup: function (e) {
-    wx.navigateTo({
-      url: '/pages/mygroup/mygroupcreate/mygroupcreate'
-    });
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      title: options.title
+    })
   },
 
   /**

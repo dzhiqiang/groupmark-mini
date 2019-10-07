@@ -1,34 +1,11 @@
-/**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
-.page-head{
-  padding: 60rpx 50rpx 80rpx;
-  text-align: center;
-}
-.page-head-title{
-  display: inline-block;
-  padding: 0 40rpx 20rpx 40rpx;
-  font-size: 40rpx;
-  color: black;
-  font-weight: bold;
-}
-.page-head-line{
-  margin: 0 auto;
-  width: 150rpx;
-  height: 2rpx;
-  background-color: #D8D8D8;
-}
-
+/* pages/create/create.wxss */
 .page-body {
   width: 100%;
   flex-grow: 1;
   overflow-x: hidden;
+}
+form{
+  width: 100%;
 }
 .page-section{
   width: 100%;
@@ -42,6 +19,7 @@
   padding-left: 30rpx;
   padding-right: 30rpx;
 }
+
 .weui-cells {
   position: relative;
   margin-top: 1.17647059em;
@@ -49,7 +27,16 @@
   line-height: 1.41176471;
   font-size: 17px;
 }
-
+.weui-cells:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #D9D9D9;
+  color: #D9D9D9;
+}
 .weui-cell:before {
   content: " ";
   position: absolute;
@@ -70,6 +57,10 @@
   border-bottom: 1rpx solid #D9D9D9;
   color: #D9D9D9;
 }
+.weui-cells_after-title {
+  margin-top: 0;
+}
+
 .weui-cell {
   padding: 0px 15px;
   position: relative;
@@ -84,6 +75,7 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
 .weui-cell__bd {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -94,34 +86,48 @@
   min-height: 2.58823529em;
   line-height: 2.58823529em;
 }
-.navigator{
-    position: relative;
-    padding-top: 13px;
-    padding-bottom: 13px;
-    padding-left: 20px;
-    padding-right: 20px;
+input {
+  width: 100%;
 }
-.navigator_arrow{
-    position: absolute;
-    top: 18px;
-    right: 22px;
-    width: 8px;
-    height: 16px;
+.weui-input-rightbutton{
+  float: left;
+  width: auto;
 }
-.navigator::before {
-  content: " ";
-  position: absolute;
-  left: 30rpx;
-  top: 0;
-  right: 30rpx;
-  height: 1px;
-  border-top: 1rpx solid #D8D8D8;
-  color: #D8D8D8;
+.mini-btn-rightbutton {
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
 }
-.btn-area{
-    padding: 0 15px;
+.images-wrapper {
+  padding: 20rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
 }
-.btn-area button{
-    margin-top: 10px;
-    margin-bottom: 10px;
+.images-wrapper-text {
+  font-size: 28rpx;
+}
+.images-list {
+  display: flex;
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+}
+.images-image {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 10rpx;
+}
+.images-image-plus {
+  border: 1px solid #999;
+}
+.part_view_hide{
+    display: none;
+}
+.part_view_show{
+    display: block;
+}
+.much_people_view_hide{
+    display: none;
+}
+.much_people_view_show{
+    display: block;
 }

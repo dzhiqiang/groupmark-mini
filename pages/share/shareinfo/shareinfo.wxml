@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+        <view class="page-section-title">项目</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <view class="weui-input"><text>吃饭</text></view>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>

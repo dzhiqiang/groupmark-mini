@@ -1,4 +1,4 @@
-// pages/mycreate/mycreate.js
+// pages/share/shareinfo/shareinfo.js
 Page({
 
   /**
@@ -7,11 +7,7 @@ Page({
   data: {
 
   },
-  createGroup: function (e) {
-    wx.navigateTo({
-      url: '/pages/mygroup/mygroupcreate/mygroupcreate'
-    });
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

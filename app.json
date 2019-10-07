@@ -3,15 +3,19 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/mygroup/mygroup",
+    "pages/mygroup/mygroupinfo/mygroupinfo",
+    "pages/mygroup/mygroupcreate/mygroupcreate",
     "pages/create/create",
     "pages/account/account",
+    "pages/account/accountinfo/accountinfo",
     "pages/share/share",
+    "pages/share/shareinfo/shareinfo",
     "pages/set/set"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "组团记账",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

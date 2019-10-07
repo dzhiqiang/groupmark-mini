@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="page-head">
+    <view class="page-head-title">{{title}}</view>
+    <view class="page-head-line"></view>
+  </view>
+  <view class="page-body">
+    <view class="page-section">
+        <view class="page-section-title">输入加成员</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input weui-input-rightbutton" name="input" placeholder="输入团员别名"/>
+              <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini">加入</button>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="page-section-title">点击别名修改</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input weui-input-rightbutton" name="input" placeholder="" value="老段" />
+              <button class="mini-btn mini-btn-rightbutton" type="warn" size="mini">删除</button>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input weui-input-rightbutton" name="input" placeholder="" value="老贾" />
+              <button class="mini-btn mini-btn-rightbutton" type="warn" size="mini">删除</button>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="btn-area">
+        <view class="button-wrapper">
+          <button type="warn" bindtap="warn">删除此团
+          </button>
+        </view>
+      </view>
+  </view>
+</view>
