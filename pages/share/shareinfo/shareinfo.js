@@ -5,7 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    checkitems: [
+      { name: 'USA', value: '美国' },
+      { name: 'CHN', value: '中国' },
+      { name: 'BRA', value: '巴西' },
+      { name: 'JPN', value: '日本' },
+      { name: 'ENG', value: '英国' },
+      { name: 'FRA', value: '法国' },
+    ],
+    items: [
+      { value: 'USA', name: '美国' },
+      { value: 'CHN', name: '中国' }
+    ],
+    muchPeopleShowView:true
   },
 
   /**

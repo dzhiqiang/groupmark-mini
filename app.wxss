@@ -49,7 +49,9 @@
   line-height: 1.41176471;
   font-size: 17px;
 }
-
+.weui-cells_after-title {
+  margin-top: 0;
+}
 .weui-cell:before {
   content: " ";
   position: absolute;
