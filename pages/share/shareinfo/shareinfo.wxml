@@ -42,7 +42,7 @@
         </view>
     </view>
     <view class="page-section much_people_view_hide {{muchPeopleShowView?'much_people_view_show':''}}" >
-       <view class="page-section-title">请选择出款人</view>
+       <view class="page-section-title">出款人</view>
        <view class="weui-cells weui-cells_after-title">
         <checkbox-group>
           <view class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">

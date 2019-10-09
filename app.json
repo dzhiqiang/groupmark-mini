@@ -10,7 +10,8 @@
     "pages/account/accountinfo/accountinfo",
     "pages/share/share",
     "pages/share/shareinfo/shareinfo",
-    "pages/set/set"
+    "pages/set/set",
+    "pages/set/setinfo/setinfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
