@@ -4,6 +4,7 @@
     "pages/logs/logs",
     "pages/mygroup/mygroup",
     "pages/mygroup/mygroupinfo/mygroupinfo",
+    "pages/mygroup/mygrouplist/mygrouplist",
     "pages/mygroup/mygroupcreate/mygroupcreate",
     "pages/create/create",
     "pages/account/account",
@@ -11,7 +12,8 @@
     "pages/share/share",
     "pages/share/shareinfo/shareinfo",
     "pages/set/set",
-    "pages/set/setinfo/setinfo"
+    "pages/set/setinfo/setinfo",
+    "pages/set/setShare/setShare"
   ],
   "window": {
     "backgroundTextStyle": "light",

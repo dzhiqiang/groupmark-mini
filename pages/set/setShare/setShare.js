@@ -1,4 +1,4 @@
-// pages/mycreate/mycreate.js
+// pages/set/setShare/setShare.js
 Page({
 
   /**
@@ -7,16 +7,7 @@ Page({
   data: {
 
   },
-  createGroup: function (e) {
-    wx.navigateTo({
-      url: '/pages/mygroup/mygroupcreate/mygroupcreate'
-    });
-  },
-  groupShare: function (e) {
-    wx.navigateTo({
-      url: '/pages/share/share'
-    });
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

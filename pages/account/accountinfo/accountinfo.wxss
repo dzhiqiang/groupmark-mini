@@ -1,32 +1,5 @@
 /* pages/create/create.wxss */
-.page-body {
-  width: 100%;
-  flex-grow: 1;
-  overflow-x: hidden;
-}
-form{
-  width: 100%;
-}
-.page-section{
-  width: 100%;
-  margin-bottom: 10rpx;
-}
-.page-section-title{
-  font-size: 28rpx;
-  color: #000000;
-  font-weight: bold;
-  margin-bottom: 10rpx;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
-}
 
-.weui-cells {
-  position: relative;
-  margin-top: 1.17647059em;
-  background-color: #FFFFFF;
-  line-height: 1.41176471;
-  font-size: 17px;
-}
 .weui-cells:before {
   content: " ";
   position: absolute;

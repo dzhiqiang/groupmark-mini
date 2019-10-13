@@ -1,27 +1,24 @@
-// pages/mycreate/mycreate.js
+// pages/mygroup/mygrouplist/mygrouplist.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    
   },
-  createGroup: function (e) {
+  targetModifyGroup:function(e){
     wx.navigateTo({
-      url: '/pages/mygroup/mygroupcreate/mygroupcreate'
-    });
-  },
-  groupShare: function (e) {
-    wx.navigateTo({
-      url: '/pages/share/share'
+      url: '/pages/mygroup/mygroupinfo/mygroupinfo?title=' + e.target.dataset.grouptitle
     });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      title: options.title
+    })
   },
 
   /**

@@ -5,7 +5,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <navigator class="navigator" url="/pages/share/shareinfo/shareinfo" hover-class="navigator-hover">
+            <navigator class="navigator" url="/pages/share/share" hover-class="navigator-hover">
               <text class="navigator_name">总金额1000元 25笔</text>
               <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
             </navigator>

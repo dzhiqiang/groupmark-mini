@@ -1,0 +1,14 @@
+.un_set_money{
+  padding-left: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  float: left;
+  margin-top:8px ;
+  margin-bottom: 10px;
+}
+.mini-btn-rightbutton  {
+  float: right;
+}
+.mini-btn{
+  margin-right: 10rpx;
+}
