@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    groupName: '',
     inputMemberAliasName:'',
     memberList: [],
     dialog: {
@@ -41,6 +42,25 @@ Page({
     this.setData({
       'dialog.hidden': true,
       'dialog.content': ''
+    })
+  },
+  createGroup : function(){
+
+    wx.request({
+      url: 'http://localhost:8080/groupmark/group/create',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        code: res.code
+      },
+      dataType: 'json',
+      success(loginRes) {
+        if (loginRes.data.code == '0000') {
+          wx.setStorageSync('token', loginRes.data.token)
+        }
+      }
     })
   },
   /**

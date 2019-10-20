@@ -37,9 +37,13 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    app.onLoad();
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   },
-  createGroup: function (e) {
+  toCreateGroup: function (e) {
     wx.navigateTo({
       url: '/pages/mygroup/mygroupcreate/mygroupcreate'
     });

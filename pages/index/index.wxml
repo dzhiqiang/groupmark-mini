@@ -12,7 +12,7 @@
   <view class="page-body">
     <view class="btn-area">
       <view class="button-wrapper">
-        <button type="primary" bindtap="createGroup">新建团</button>
+        <button type="primary" bindtap="toCreateGroup">新建团</button>
       </view>
     </view>
     <view class="page-section">
