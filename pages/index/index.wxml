@@ -9,28 +9,25 @@
       </block>
     </view>
   </view>
-  <view class="body">
-      <view class="navigator_item">
-      <navigator class="navigator" url="/pages/create/create" hover-class="navigator-hover">
-      <text class="navigator_name">记一笔</text>
-      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
-      </navigator>
-      <navigator class="navigator" url="/pages/mygroup/mygroup" hover-class="navigator-hover">
-      <text class="navigator_name">我的团</text>
-      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
-      </navigator>
-      <navigator class="navigator" url="/pages/account/account" hover-class="navigator-hover">
-      <text class="navigator_name">我的记账</text>
-      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
-      </navigator>
-      <navigator class="navigator" url="/pages/share/share" hover-class="navigator-hover">
-      <text class="navigator_name">记账记录</text>
-      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
-      </navigator>
-      <navigator class="navigator" url="/pages/set/set" hover-class="navigator-hover">
-      <text class="navigator_name">结算记录</text>
-      <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
-      </navigator>
+  <view class="page-body">
+    <view class="btn-area">
+      <view class="button-wrapper">
+        <button type="primary" bindtap="createGroup">新建团</button>
+      </view>
+    </view>
+    <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <navigator class="navigator" url="/pages/mygroup/mygrouplist/mygrouplist?groupId=1&title=段贾孙团" hover-class="navigator-hover">
+                <text class="navigator_name">段贾孙团</text>
+                <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+              </navigator>
+              <view class="un_set_money"><text>未结算100元</text></view>
+              <button class="mini-btn mini-btn-rightbutton" type="primary" plain="true" size="mini">结算</button>
+            </view>
+          </view>
+        </view>
     </view>
   </view>
 </view>

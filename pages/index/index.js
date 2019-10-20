@@ -37,11 +37,16 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    app.onLoad();
+  },
+  createGroup: function (e) {
+    wx.navigateTo({
+      url: '/pages/mygroup/mygroupcreate/mygroupcreate'
+    });
+  },
+  groupShare: function (e) {
+    wx.navigateTo({
+      url: '/pages/share/share'
+    });
   }
 })

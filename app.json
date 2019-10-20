@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/mygroup/mygroup",
     "pages/mygroup/mygroupinfo/mygroupinfo",
     "pages/mygroup/mygrouplist/mygrouplist",
     "pages/mygroup/mygroupcreate/mygroupcreate",
