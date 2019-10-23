@@ -1,4 +1,5 @@
 // pages/mygroup/mygroupcreate/mygroupcreate.js
+const app = getApp()
 Page({
 
   /**
@@ -38,6 +39,9 @@ Page({
   inputMemberAliasNameChange: function (e) {
     this.data.inputMemberAliasName = e.detail.value
   },
+  inputGroupName: function (e) {
+    this.data.groupName = e.detail.value
+  },
   confirm() {
     this.setData({
       'dialog.hidden': true,
@@ -45,7 +49,16 @@ Page({
     })
   },
   createGroup : function(){
-
+    var that = this;
+    var token = wx.getStorageSync('token');
+    const { groupName, memberList } = this.data;
+    if (groupName == ''){
+      this.setData({
+        'dialog.hidden': false,
+        'dialog.content': '团名不能为空'
+      })
+      return;
+    }
     wx.request({
       url: 'http://localhost:8080/groupmark/group/create',
       method: 'POST',
@@ -53,12 +66,21 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        code: res.code
+        token: token,
+        groupName: groupName,
+        memberList: memberList
       },
       dataType: 'json',
-      success(loginRes) {
-        if (loginRes.data.code == '0000') {
-          wx.setStorageSync('token', loginRes.data.token)
+      success(res) {
+        if ('0000' == res.data.code){
+          that.setData({
+            'dialog.hidden': false,
+            'dialog.content': '保存成功'
+          })
+          
+        }
+        if('0002' == res.data.code){
+          app.onLogin();
         }
       }
     })

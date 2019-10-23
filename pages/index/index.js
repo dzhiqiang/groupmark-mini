@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    myGroupList:[],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -52,5 +53,30 @@ Page({
     wx.navigateTo({
       url: '/pages/share/share'
     });
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onShow: function () {
+    var that = this;
+    var token = wx.getStorageSync('token');
+    wx.request({
+      url: 'http://localhost:8080/groupmark/group/myGroup',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          that.setData({
+            myGroupList: res.data.myGroupList
+          })
+        }
+      }
+    })
   }
 })

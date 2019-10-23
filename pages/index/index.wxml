@@ -18,9 +18,14 @@
     <view class="page-section">
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" wx:if="{{myGroupList.length == 0}}">
+              <text>还没团,新建一个吧</text>
+            </view>
+          </view>
+          <view wx:for-items="{{myGroupList}}" class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <navigator class="navigator" url="/pages/mygroup/mygrouplist/mygrouplist?groupId=1&title=段贾孙团" hover-class="navigator-hover">
-                <text class="navigator_name">段贾孙团</text>
+              <navigator class="navigator" url="/pages/mygroup/mygrouplist/mygrouplist?groupId={{item.id}}&title={{item.groupName}}" hover-class="navigator-hover">
+                <text class="navigator_name">{{item.groupName}}</text>
                 <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
               </navigator>
               <view class="un_set_money"><text>未结算100元</text></view>
