@@ -1,13 +1,10 @@
 // pages/create/create.js
-var items = [{ 'id': '1', 'name': 'item1' }, { 'id': '2', 'name': 'item2' }, { 'id': '3', 'name': 'item3' }]
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    actionSheetHidden: true,
-    actionSheetItems: items,
     selectGroupInputText: '',
     selectGroupInputValue:'',
     checkitems: [
@@ -30,18 +27,6 @@ Page({
     partShowView :false,
     muchPeoplePlain: true,
     muchPeopleShowView: false
-  },
-  actionSheetTap: function (e) {
-    this.setData({
-      actionSheetHidden: !this.data.actionSheetHidden
-    })
-  },
-  selectGroupValue: function (e) {
-    this.setData({
-      selectGroupInputText: e.target.dataset.grouptext,
-      selectGroupInputValue: e.target.dataset.groupid,
-      actionSheetHidden: !this.data.actionSheetHidden
-    })
   },
   actionSheetChange: function (e) {
     this.setData({
@@ -84,7 +69,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    that.setData({
+      groupId: options.groupId
+    })
+    var token = wx.getStorageSync('token');
+    wx.request({
+      url: 'http://localhost:8080/groupmark/group/myGroup',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          that.setData({
+            myGroupList: res.data.myGroupList
+          })
+        }
+      }
+    })
   },
 
   /**

@@ -13,7 +13,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      title: options.title
+      groupName: options.groupName,
+      groupId: options.groupId
     })
   },
 

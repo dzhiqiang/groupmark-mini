@@ -1,6 +1,6 @@
 <view class="container">
   <view class="page-head">
-    <view class="page-head-title" bindtap="targetModifyGroup" data-grouptitle="{{title}}">{{title}}</view>
+    <view class="page-head-title" bindtap="targetModifyGroup">{{groupName}}</view>
     <view class="page-head-line"></view>
   </view>
   <view class="page-body">
@@ -26,7 +26,7 @@
     <view class="nav_link">
       <button class="defalut_btn">
         <view class="plus_wp">
-        <image src='/pages/resources/plus_ico.png' class="plus_ico" />
+        <image src='/pages/resources/plus_ico.png' class="plus_ico" bindtap="toCreateDetail" />
       </view>
       <text class="txt txt_fb">记一笔</text>
       </button>

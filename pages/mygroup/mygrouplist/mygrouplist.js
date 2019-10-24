@@ -5,11 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    groupId:'',
+    groupName:''
   },
   targetModifyGroup:function(e){
     wx.navigateTo({
-      url: '/pages/mygroup/mygroupinfo/mygroupinfo?title=' + e.target.dataset.grouptitle
+      url: '/pages/mygroup/mygroupinfo/mygroupinfo?groupId=' + this.data.groupId + '&groupName=' + this.data.groupName
+    });
+  },
+  toCreateDetail:function(e){
+    wx.navigateTo({
+      url: '/pages/create/create?groupId=' + this.data.groupId + '&groupName=' + this.data.groupName
     });
   },
   /**
@@ -17,7 +23,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      title: options.title
+      groupName: options.groupName,
+      groupId: options.groupId,
     })
   },
 

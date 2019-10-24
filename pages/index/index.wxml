@@ -24,7 +24,7 @@
           </view>
           <view wx:for-items="{{myGroupList}}" class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <navigator class="navigator" url="/pages/mygroup/mygrouplist/mygrouplist?groupId={{item.id}}&title={{item.groupName}}" hover-class="navigator-hover">
+              <navigator class="navigator" url="/pages/mygroup/mygrouplist/mygrouplist?groupId={{item.id}}&groupName={{item.groupName}}" hover-class="navigator-hover">
                 <text class="navigator_name">{{item.groupName}}</text>
                 <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
               </navigator>

@@ -11,53 +11,27 @@
           </view>
         </view>
       </view>
-
-      <view class="page-section">
-        <view class="page-section-title">选择团</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input name="group" hidden="true" value="{{selectGroupInputValue}}"/>
-              <input class="weui-input weui-input-rightbutton" name="input" placeholder="哪个团" bindtap="actionSheetTap" disabled="true" value="{{selectGroupInputText}}"/>
-              <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini" plain="{{partPlain}}" bindtap="setPartView">部分</button>
-              <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetChange">
-                <block wx:for-items="{{actionSheetItems}}">
-                    <action-sheet-item class="item" data-groupid="{{item.id}}"
-                    data-grouptext="{{item.name}}" bindtap="selectGroupValue">{{item.name}}</action-sheet-item>
-                </block>
-                <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
-            </action-sheet>
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view class="page__bd part_view_hide {{partShowView?'part_view_show':''}}">
-        <view class="section section_gap">
-            <checkbox-group bindchange="checkboxChange">
-                <label class="checkbox" wx:for-items="{{checkitems}}">
-                    <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-                </label>
-            </checkbox-group>
-        </view>
-      </view>
-
       <view class="page-section">
         <view class="page-section-title">金额</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <input class="weui-input weui-input-rightbutton" name="input" placeholder="多少钱" />
-              <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini" plain="{{muchPeoplePlain}}" bindtap="setMuchPeopleView">多人</button>
+              <input class="weui-input" name="input" placeholder="多少钱" />
             </view>
           </view>
         </view>
       </view>
 
-      <view class="page-section much_people_view_hide {{muchPeopleShowView?'much_people_view_show':''}}" >
-       <view class="page-section-title">请选择出款人</view>
+      <view class="page-section">
+       <view class="page-section-title">付款者</view>
        <view class="weui-cells weui-cells_after-title">
-        <checkbox-group>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input weui-input-rightbutton" name="input" value="段" placeholder="多少钱" />
+              <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini" plain="{{muchPeoplePlain}}" bindtap="setMuchPeopleView">多人</button>
+            </view>
+          </view>
+        <checkbox-group class="much_people_view_hide {{muchPeopleShowView?'much_people_view_show':''}}">
           <view class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
             <view class="weui-cell__hd">
               <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
@@ -70,7 +44,29 @@
         </checkbox-group>
        </view>
       </view>
-
+      <view class="page-section">
+        <view class="page-section-title">分摊方</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input name="group" hidden="true" value="{{selectGroupInputValue}}"/>
+              <input class="weui-input weui-input-rightbutton" name="input" disabled="true" value="全团人员"/>
+              <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini" plain="{{partPlain}}" bindtap="setPartView">部分</button>
+            </view>
+          </view>
+          <checkbox-group class="part_view_hide {{partShowView?'part_view_show':''}}">
+          <view class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
+            <view class="weui-cell__hd">
+              <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+            </view>
+            <view class="weui-cell__bd">{{item.name}}</view>
+            <view class="weui-cell__bd">
+              <input class="weui-input"  name="input" placeholder="多少钱" />
+            </view>
+          </view>
+        </checkbox-group>
+        </view>
+      </view>
       <view class="page-section">
         <view class="page-section-title">备注</view>
         <view class="weui-cells weui-cells_after-title">
