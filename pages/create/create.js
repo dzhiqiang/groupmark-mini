@@ -5,33 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    selectGroupInputText: '',
-    selectGroupInputValue:'',
-    checkitems: [
-      { name: 'USA', value: '美国' },
-      { name: 'CHN', value: '中国' },
-      { name: 'BRA', value: '巴西' },
-      { name: 'JPN', value: '日本' },
-      { name: 'ENG', value: '英国' },
-      { name: 'FRA', value: '法国' },
-    ],
-    items: [
-      { value: 'USA', name: '美国' },
-      { value: 'CHN', name: '中国' },
-      { value: 'BRA', name: '巴西' },
-      { value: 'JPN', name: '日本' },
-      { value: 'ENG', name: '英国' },
-      { value: 'FRA', name: '法国' }
-    ],
+    muchPeopleGroupMemberList: [],
+    muchPeoplePayer: [],
     partPlain: true,
     partShowView :false,
     muchPeoplePlain: true,
-    muchPeopleShowView: false
-  },
-  actionSheetChange: function (e) {
-    this.setData({
-      actionSheetHidden: !this.data.actionSheetHidden
-    })
+    muchPeopleShowView: false,
+    moneyValue:''
   },
   chooseImage: function () {
     var that = this
@@ -65,6 +45,9 @@ Page({
       muchPeopleShowView: !this.data.muchPeopleShowView
     })
   },
+  inputMoney:function(e){
+    console.log(this.data.moneyValue)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -75,19 +58,29 @@ Page({
     })
     var token = wx.getStorageSync('token');
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/myGroup',
+      url: 'http://localhost:8080/groupmark/group/myGroupMember',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        token: token
+        token: token,
+        groupId: options.groupId
       },
       dataType: 'json',
       success(res) {
         if ('0000' == res.data.code) {
           that.setData({
-            myGroupList: res.data.myGroupList
+            muchPeopleGroupMemberList: res.data.groupMemberList
+          })
+          var muchPeoplePayer = [];
+          res.data.groupMemberList.forEach(member => {
+            if (member.self){
+              muchPeoplePayer.push(member.memberName)
+            }
+          })
+          that.setData({
+            muchPeoplePayer: muchPeoplePayer
           })
         }
       }
