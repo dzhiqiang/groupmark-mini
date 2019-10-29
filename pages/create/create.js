@@ -13,7 +13,9 @@ Page({
     muchPeoplePlain: true,
     muchPeopleShowView: false,
     moneyValue:'',
-    project:''
+    project:'',
+    remark: '',
+    submitDisabled: false
   },
   chooseImage: function () {
     var that = this
@@ -174,7 +176,112 @@ Page({
     })
   },
   saveDetail:function(e){
+    this.setData({
+      submitDisabled: !this.data.submitDisabled
+    })
+    if (!this.data.project || !this.data.project.trim()){
+      wx.showToast({
+        icon: 'none',
+        title: '项目不能为空'
+      });
+      this.setData({
+        submitDisabled: !this.data.submitDisabled
+      })
+      return;
+    }
+
+    if (!this.data.moneyValue || !this.data.moneyValue.trim()) {
+      wx.showToast({
+        icon: 'none',
+        title: '金额不能为空'
+      });
+      this.setData({
+        submitDisabled: !this.data.submitDisabled
+      })
+      return;
+    }
+
+    var groupMemberList = this.data.groupMemberList;
+    var muchPeopleDetailMoneyList = [];
+    var partDetailMoneyList = [];
+    groupMemberList.forEach(groupMember =>{
+      if (groupMember.partChecked){
+        var partDetailMoney = {};
+        partDetailMoney.memberName = groupMember.memberName;
+        partDetailMoney.memberId = groupMember.id;
+        partDetailMoney.moneyValue = groupMember.partMoney;
+        partDetailMoneyList.push(partDetailMoney);
+      }
+      if (groupMember.muchPeopleChecked){
+        var muchPeopleDetailMoney = {};
+        muchPeopleDetailMoney.memberName = groupMember.memberName;
+        muchPeopleDetailMoney.memberId = groupMember.id;
+        muchPeopleDetailMoney.moneyValue = groupMember.muchPeopleMoney;
+        muchPeopleDetailMoneyList.push(muchPeopleDetailMoney);
+      }
+    })
+    if (muchPeopleDetailMoneyList.length == 0){
+      wx.showToast({
+        icon: 'none',
+        title: '付款者不能为空'
+      });
+      this.setData({
+        submitDisabled: !this.data.submitDisabled
+      })
+      return;
+    }
+    if (partDetailMoneyList.length ==0){
+      wx.showToast({
+        icon: 'none',
+        title: '分摊方不能为空'
+      });
+      this.setData({
+        submitDisabled: !this.data.submitDisabled
+      })
+      return;
+    }
     
+    var token = wx.getStorageSync('token');
+    var data = {
+      token: token,
+      groupId: this.data.groupId,
+      project: this.data.project,
+      moneyValue: this.data.moneyValue,
+      muchPeopleFlag: this.data.muchPeopleShowView,
+      partFlag: this.data.partShowView,
+      remark: this.data.remark,
+      muchPeopleDetail: JSON.stringify(muchPeopleDetailMoneyList),
+      partDetail: JSON.stringify(partDetailMoneyList)
+    };
+    wx.request({
+      url: 'http://localhost:8080/groupmark/detail/create',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: data,
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          wx.showToast({
+            icon: 'success',
+            title: '成功'
+          });
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      },
+      fail(res){
+        wx.showToast({
+          icon: 'none',
+          title: '保存失败'
+        });
+        this.setData({
+          submitDisabled: !this.data.submitDisabled
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

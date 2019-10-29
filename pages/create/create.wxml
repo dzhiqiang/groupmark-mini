@@ -71,13 +71,13 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <input class="weui-input" name="remark" maxlength="16" placeholder=""  bindinput="remarkInput"/>
+              <input class="weui-input" name="remark" maxlength="16" placeholder="" bindinput="remarkInput"/>
             </view>
           </view>
         </view>
       </view>
       <view class="btn-area">
-        <button type="primary" bindtap="saveDetail">保存</button>
+        <button type="primary" bindtap="saveDetail" disabled="{{submitDisabled}}">保存</button>
       </view>
     </form>
   </view>

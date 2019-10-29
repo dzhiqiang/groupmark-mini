@@ -61,7 +61,7 @@ Page({
     var that = this;
     var token = wx.getStorageSync('token');
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/myGroup',
+      url: 'http://localhost:8080/groupmark/group/myGroupView',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -73,7 +73,7 @@ Page({
       success(res) {
         if ('0000' == res.data.code) {
           that.setData({
-            myGroupList: res.data.myGroupList
+            myGroupList: res.data.myGroupViewList
           })
         }
       }

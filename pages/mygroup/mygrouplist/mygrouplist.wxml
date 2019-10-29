@@ -4,23 +4,23 @@
     <view class="page-head-line"></view>
   </view>
   <view class="page-body">
-    <view class="page-section">
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <navigator class="navigator" url="/pages/share/shareinfo/shareinfo" hover-class="navigator-hover">
-                <view><text class="accountinfo_project">买水果买水果买水果买水</text>
-                </view>
-                <view><text class="accountinfo_money">10000000元</text>
-                </view>
-                <view><text class="accountinfo_status">已结</text>
-                </view>
-                <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
-              </navigator>
-            </view>
+    <view class="page-section" wx:for-items="{{gmDetailViewList}}">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <navigator class="navigator" url="/pages/share/shareinfo/shareinfo?detailId={{item.id}}" hover-class="navigator-hover">
+              <view><text class="detail_project">{{item.project}}</text>
+              </view>
+              <view><text class="detail_money">{{item.moneyValueStr}}元</text>
+              </view>
+              <view><text class="detail_status">{{item.statusName}}</text>
+              </view>
+              <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+            </navigator>
           </view>
         </view>
       </view>
+    </view>
   </view>
   <view class="flex fix_nav_wp">
     <view class="nav_link">

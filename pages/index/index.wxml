@@ -28,7 +28,7 @@
                 <text class="navigator_name">{{item.groupName}}</text>
                 <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
               </navigator>
-              <view class="un_set_money"><text>未结算100元</text></view>
+              <view class="un_set_money"><text>未结算{{item.unSetMoney}}元</text></view>
               <button class="mini-btn mini-btn-rightbutton" type="primary" plain="true" size="mini">结算</button>
             </view>
           </view>

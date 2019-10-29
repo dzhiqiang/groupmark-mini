@@ -14,7 +14,7 @@
     width: 8px;
     height: 16px;
 }
-.accountinfo_project{
+.detail_project{
     position: absolute;
     top: 5px;
     left: 10px;
@@ -22,7 +22,7 @@
     height: 20px;
     font-size: 15px;
 }
-.accountinfo_status{
+.detail_status{
     position: absolute;
     top: 5px;
     left: 65%;
@@ -30,15 +30,7 @@
     height: 20px;
     font-size: 15px;
 }
-.accountinfo_group{
-    position: absolute;
-    top: 25px;
-    left: 10px;
-    width: 50%;
-    height: 20px;
-    font-size: 15px;
-}
-.accountinfo_money{
+.detail_money{
     position: absolute;
     top: 25px;
     left: 50%;

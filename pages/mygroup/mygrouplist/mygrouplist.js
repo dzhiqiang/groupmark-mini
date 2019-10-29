@@ -22,9 +22,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     this.setData({
       groupName: options.groupName,
       groupId: options.groupId,
+    })
+    var token = wx.getStorageSync('token');
+    var groupId = options.groupId;
+    wx.request({
+      url: 'http://localhost:8080/groupmark/detail/detailList',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token,
+        groupId: groupId
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          that.setData({
+            gmDetailViewList: res.data.gmDetailViewList
+          })
+        }
+      }
     })
   },
 
