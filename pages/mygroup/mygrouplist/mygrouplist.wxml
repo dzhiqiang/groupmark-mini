@@ -9,12 +9,10 @@
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
             <navigator class="navigator" url="/pages/share/shareinfo/shareinfo?detailId={{item.id}}" hover-class="navigator-hover">
-              <view><text class="detail_project">{{item.project}}</text>
-              </view>
-              <view><text class="detail_money">{{item.moneyValueStr}}元</text>
-              </view>
-              <view><text class="detail_status">{{item.statusName}}</text>
-              </view>
+              <view><text class="detail_project">{{item.project}}</text></view>
+              <view><text class="detail_money">{{item.moneyValueStr}}元</text></view>
+              <view><text class="detail_status">{{item.statusName}}</text></view>
+              <view><text class="detail_nick_name">{{item.createNickName}}<text class="detail_created_date">{{item.createdDateStr}}</text></text></view>
               <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
             </navigator>
           </view>

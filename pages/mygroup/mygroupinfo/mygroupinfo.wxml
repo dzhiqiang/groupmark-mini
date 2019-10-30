@@ -1,6 +1,6 @@
 <view class="container">
   <view class="page-head">
-    <view class="page-head-title">{{groupName}}</view>
+    <view class="page-head-title"><input value="{{groupName}}" maxlength="32" bindinput="inputGroupNameChange" bindblur="modifyGroupName"/></view>
     <view class="page-head-line"></view>
   </view>
   <view class="page-body">
@@ -9,8 +9,8 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <input class="weui-input weui-input-rightbutton" name="input" placeholder="输入团员别名"/>
-              <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini">加入</button>
+              <input class="weui-input weui-input-rightbutton" name="input" maxlength="32" placeholder="输入团员别名" value="{{inputMemberAliasName}}" bindinput="inputMemberAliasNameChange"/>
+              <button class="mini-btn mini-btn-rightbutton" type="primary" size="mini" bindtap="joinGroup">加入</button>
             </view>
           </view>
         </view>
@@ -18,16 +18,10 @@
       <view class="page-section">
         <view class="page-section-title">点击别名修改</view>
         <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
+          <view class="weui-cell weui-cell_input" wx:for-items="{{groupMemberList}}">
             <view class="weui-cell__bd">
-              <input class="weui-input weui-input-rightbutton" name="input" placeholder="" value="老段" />
-              <button class="mini-btn mini-btn-rightbutton" type="warn" size="mini">删除</button>
-            </view>
-          </view>
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input weui-input-rightbutton" name="input" placeholder="" value="老贾" />
-              <button class="mini-btn mini-btn-rightbutton" type="warn" size="mini">删除</button>
+              <input class="weui-input weui-input-rightbutton" name="input" placeholder="" data-groupmemid="{{item.id}}" value="{{item.memberName}}" />
+              <button class="mini-btn mini-btn-rightbutton" type="warn" data-groupmemid="{{item.id}}" size="mini">删除</button>
             </view>
           </view>
         </view>

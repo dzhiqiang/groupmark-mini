@@ -22,13 +22,54 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    
     this.setData({
-      groupName: options.groupName,
-      groupId: options.groupId,
+      groupId: options.groupId
     })
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.showGroupInfo();
+    this.showGroupDetailInfo();
+  },
+  showGroupInfo: function () {
+    var that = this;
     var token = wx.getStorageSync('token');
-    var groupId = options.groupId;
+    var groupId = this.data.groupId;
+    wx.request({
+      url: 'http://localhost:8080/groupmark/group/groupInfo',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token,
+        groupId: groupId
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          that.setData({
+            groupName: res.data.gmGroup.groupName
+          })
+        }
+      }
+    })
+  },
+  showGroupDetailInfo: function () {
+    var that = this;
+    var token = wx.getStorageSync('token');
+    var groupId = this.data.groupId;
     wx.request({
       url: 'http://localhost:8080/groupmark/detail/detailList',
       method: 'POST',
@@ -49,21 +90,6 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
