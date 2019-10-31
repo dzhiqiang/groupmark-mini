@@ -65,3 +65,10 @@ flex-direction: column;color:#999;position: relative;}
 .defalut_btn{background: transparent;border:none;overflow: visible;padding-left:0;padding-right:0;margin-left:0;margin-right:0;
 border-radius:0;}
 .defalut_btn:after{display: none;}
+.group_settings{
+  position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 16px;
+    height: 16px;
+}

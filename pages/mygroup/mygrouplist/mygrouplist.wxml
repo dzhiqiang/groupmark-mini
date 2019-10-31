@@ -1,6 +1,7 @@
 <view class="container">
   <view class="page-head">
     <view class="page-head-title" bindtap="targetModifyGroup">{{groupName}}</view>
+    <image class="group_settings" src="/pages/resources/settings.png" background-size="cover" bindtap="targetModifyGroup"/>
     <view class="page-head-line"></view>
   </view>
   <view class="page-body">

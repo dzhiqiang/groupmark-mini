@@ -1,6 +1,7 @@
 <view class="container">
   <view class="page-head">
     <view class="page-head-title"><input value="{{groupName}}" maxlength="32" bindinput="inputGroupNameChange" bindblur="modifyGroupName"/></view>
+    <image class="group_modify" src="/pages/resources/Modify.png" background-size="cover"/>
     <view class="page-head-line"></view>
   </view>
   <view class="page-body">
@@ -20,15 +21,15 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input" wx:for-items="{{groupMemberList}}">
             <view class="weui-cell__bd">
-              <input class="weui-input weui-input-rightbutton" name="input" placeholder="" data-groupmemid="{{item.id}}" value="{{item.memberName}}" />
-              <button class="mini-btn mini-btn-rightbutton" type="warn" data-groupmemid="{{item.id}}" size="mini">删除</button>
+              <input class="weui-input weui-input-rightbutton" name="input" placeholder="" data-groupmemid="{{item.id}}" value="{{item.memberName}}" bindinput="inputMemberNameChange" bindblur="modifyMemberName"/>
+              <button class="mini-btn mini-btn-rightbutton" type="warn" data-groupmemid="{{item.id}}" size="mini" bindtap="deleteMember">删除</button>
             </view>
           </view>
         </view>
       </view>
       <view class="btn-area">
         <view class="button-wrapper">
-          <button type="warn" bindtap="warn">删除此团
+          <button type="warn" bindtap="warn" bindtap="deleteGroup">删除此团
           </button>
         </view>
       </view>

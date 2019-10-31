@@ -82,6 +82,99 @@ Page({
   inputGroupNameChange : function(e){
     this.data.groupName = e.detail.value
   },
+  inputMemberNameChange: function (e) {
+    var memberName = e.detail.value
+    var groupmemid = e.target.dataset.groupmemid;
+    var groupMemberList = this.data.groupMemberList;
+    groupMemberList.forEach(member =>{
+      if (groupmemid == member.id){
+        member.memberName = memberName;
+      }
+    });
+    this.setData({
+      groupMemberList: groupMemberList
+    });
+  },
+  modifyMemberName:function(e){
+    var groupmemid = e.target.dataset.groupmemid;
+    var groupMemberList = this.data.groupMemberList;
+    var token = wx.getStorageSync('token');
+    groupMemberList.forEach(member => {
+      if (groupmemid == member.id) {
+        wx.request({
+          url: 'http://localhost:8080/groupmark/group/modifyGroupMemberName',
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            token: token,
+            groupMemberId: groupmemid,
+            groupMemberName: member.memberName
+          },
+          dataType: 'json'
+        })
+      }
+    });
+  },
+  deleteMember : function(e){
+    var that = this;
+    var token = wx.getStorageSync('token');
+    var groupmemid = e.target.dataset.groupmemid;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗?',
+      success:function(e){
+        if(e.confirm){
+          wx.request({
+            url: 'http://localhost:8080/groupmark/group/deleteMember',
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              token: token,
+              groupMemberId: groupmemid
+            },
+            dataType: 'json',
+            success :function(){
+              that.loadMember();
+            }
+          })
+        }
+      }
+    })
+  },
+  deleteGroup: function (e) {
+    var that = this;
+    var token = wx.getStorageSync('token');
+    var groupId = that.data.groupId;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗?',
+      success: function (e) {
+        if (e.confirm) {
+          wx.request({
+            url: 'http://localhost:8080/groupmark/group/deleteGroup',
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              token: token,
+              groupId: groupId
+            },
+            dataType: 'json',
+            success: function () {
+              wx.redirectTo({
+                url: '/pages/index/index'
+              });
+            }
+          })
+        }
+      }
+    })
+  },
   modifyGroupName : function(){
     var groupName = this.data.groupName;
     if (!groupName || !groupName.trim()) {
@@ -105,15 +198,7 @@ Page({
         groupId: groupId,
         groupName: groupName.trim()
       },
-      dataType: 'json',
-      success(res) {
-        if ('0000' == res.data.code) {
-          that.setData({
-            inputMemberAliasName: ''
-          });
-          that.loadMember();
-        }
-      }
+      dataType: 'json'
     })
   },
   /**

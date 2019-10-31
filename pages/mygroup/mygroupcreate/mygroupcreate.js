@@ -77,10 +77,9 @@ Page({
             'dialog.hidden': false,
             'dialog.content': '保存成功'
           })
-          
-        }
-        if('0002' == res.data.code){
-          app.onLogin();
+          wx.redirectTo({
+            url: '/pages/index/index'
+          });
         }
       }
     })
