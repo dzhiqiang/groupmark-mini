@@ -1,7 +1,6 @@
 <view class="container">
   <view class="page-head">
     <view class="page-head-title"><input value="{{groupName}}" maxlength="32" bindinput="inputGroupNameChange" bindblur="modifyGroupName"/></view>
-    <image class="group_modify" src="/pages/resources/Modify.png" background-size="cover"/>
     <view class="page-head-line"></view>
   </view>
   <view class="page-body">
