@@ -17,26 +17,6 @@ Page({
     remark: '',
     submitDisabled: false
   },
-  chooseImage: function () {
-    var that = this
-    wx.chooseImage({
-      sourceType: ['album', 'camera'],
-      sizeType: ['original', 'compressed'],
-      count: 1,
-      success: function (res) {
-        that.setData({
-          imageList: res.tempFilePaths
-        })
-      }
-    })
-  },
-  previewImage: function (e) {
-    var current = e.target.dataset.src
-    wx.previewImage({
-      current: current,
-      urls: this.data.imageList
-    })
-  },
   setPartView: function(e){
     this.setData({
       partPlain: !this.data.partPlain,
@@ -176,6 +156,7 @@ Page({
     })
   },
   saveDetail:function(e){
+    var moneyValue = this.data.moneyValue;
     this.setData({
       submitDisabled: !this.data.submitDisabled
     })
@@ -204,22 +185,69 @@ Page({
     var groupMemberList = this.data.groupMemberList;
     var muchPeopleDetailMoneyList = [];
     var partDetailMoneyList = [];
-    groupMemberList.forEach(groupMember =>{
-      if (groupMember.partChecked){
+    var muckPeopleSum = 0;
+    var partSum = 0;
+    for (let groupMember of groupMemberList){
+      if (groupMember.partChecked) {
         var partDetailMoney = {};
         partDetailMoney.memberName = groupMember.memberName;
         partDetailMoney.memberId = groupMember.id;
         partDetailMoney.moneyValue = groupMember.partMoney;
         partDetailMoneyList.push(partDetailMoney);
+        if (!groupMember.partMoney) {
+          wx.showToast({
+            icon: 'none',
+            title: '选中团员金额不能为空'
+          });
+          this.setData({
+            submitDisabled: !this.data.submitDisabled
+          })
+          return;
+        }
+        partSum += parseFloat(groupMember.partMoney);
       }
-      if (groupMember.muchPeopleChecked){
+      if (groupMember.muchPeopleChecked) {
         var muchPeopleDetailMoney = {};
         muchPeopleDetailMoney.memberName = groupMember.memberName;
         muchPeopleDetailMoney.memberId = groupMember.id;
         muchPeopleDetailMoney.moneyValue = groupMember.muchPeopleMoney;
         muchPeopleDetailMoneyList.push(muchPeopleDetailMoney);
+        if (!groupMember.muchPeopleMoney) {
+          wx.showToast({
+            icon: 'none',
+            title: '选中团员金额不能为空'
+          });
+          this.setData({
+            submitDisabled: !this.data.submitDisabled
+          })
+          return;
+        }
+        muckPeopleSum += parseFloat(groupMember.muchPeopleMoney);
       }
-    })
+    }
+
+    if (moneyValue != muckPeopleSum){
+      wx.showToast({
+        icon: 'none',
+        title: '多人付款总金额不符'
+      });
+      this.setData({
+        submitDisabled: !this.data.submitDisabled
+      })
+      return;
+    }
+
+    if (moneyValue != partSum) {
+      wx.showToast({
+        icon: 'none',
+        title: '多人分摊总金额不符'
+      });
+      this.setData({
+        submitDisabled: !this.data.submitDisabled
+      })
+      return;
+    }
+
     if (muchPeopleDetailMoneyList.length == 0){
       wx.showToast({
         icon: 'none',
@@ -230,6 +258,7 @@ Page({
       })
       return;
     }
+
     if (partDetailMoneyList.length ==0){
       wx.showToast({
         icon: 'none',
@@ -290,7 +319,8 @@ Page({
     var that = this;
     that.setData({
       groupId: options.groupId
-    })
+    });
+    var detailId = options.detailId;
     var token = wx.getStorageSync('token');
     wx.request({
       url: 'http://localhost:8080/groupmark/group/myGroupMember',
