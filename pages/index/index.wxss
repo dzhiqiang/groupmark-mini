@@ -39,3 +39,7 @@
 .mini-btn{
   margin-right: 10rpx;
 }
+button.mini-btn-rightbutton {
+  padding-left: 10px;
+  padding-right: 10px;
+}

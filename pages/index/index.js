@@ -49,9 +49,10 @@ Page({
       url: '/pages/mygroup/mygroupcreate/mygroupcreate'
     });
   },
-  groupShare: function (e) {
+  setDetail:function(e){
+    var groupId = e.target.dataset.groupid;
     wx.navigateTo({
-      url: '/pages/share/share'
+      url: '/pages/set/setinfo/setinfo?groupId='+groupId
     });
   },
   /**
