@@ -5,7 +5,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-check__label">
           <view class="weui-cell__bd">
-              <input class="weui-input"  name="input" value="总金额1000元 25笔" disabled="true" />
+              <input class="weui-input"  name="input" value="总金额{{setMoney}}元 {{setNum}}笔" disabled="true" />
             </view>
         </view>
       </view>
@@ -13,14 +13,17 @@
     <view class="page-section">
       <view class="page-section-title">收支</view>
       <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
-            <view class="weui-cell__bd">{{item.name}}</view>
+          <view class="weui-cell weui-check__label" wx:for="{{setResponseList}}" >
+            <view class="weui-cell__bd">{{item.memberName}}</view>
             <view class="weui-cell__bd">
-              <input class="weui-input"  name="input" value="100" disabled="true" />
+              <input class="weui-input"  name="input" value="{{item.dirName}}" disabled="true" />
             </view>
-            <view class="weui-cell__bd">{{item.name}}</view>
+            <view class="weui-cell__bd">{{item.setMoney}}</view>
           </view>
       </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="setDetail" disabled="{{submitDisabled}}">结算</button>
     </view>
   </view> 
 </view>

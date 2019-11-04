@@ -5,24 +5,78 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [
-      { value: 'USA', name: '美国' },
-      { value: 'CHN', name: '中国' }
-    ]
+    submitDisabled :false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var groupId = options.groupId;
+    this.setData({
+      groupId : groupId
+    });
+    this.doSetView();
+    
   },
-
+  doSetView:function(){
+    var that = this;
+    var groupId = that.data.groupId;
+    var token = wx.getStorageSync('token');
+    wx.request({
+      url: 'http://localhost:8080/groupmark/group/doSet',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token,
+        groupId: groupId
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          that.setData({
+            setNum: res.data.doSetResponse.setNum,
+            setMoney: res.data.doSetResponse.setMoney,
+            detailIdList: res.data.doSetResponse.detailIdList,
+            setResponseList: res.data.doSetResponse.setResponseList,
+          });
+        }
+      }
+    })
+  },
+  setDetail : function(){
+    var that = this;
+    var token = wx.getStorageSync('token');
+    var groupId = that.data.groupId;
+    var detailIdList = that.data.detailIdList;
+    wx.request({
+      url: 'http://localhost:8080/groupmark/group/setDetail',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token,
+        groupId: groupId,
+        detailIdList: detailIdList
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          //跳转结算记录
+        }else{
+          that.doSetView();
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
