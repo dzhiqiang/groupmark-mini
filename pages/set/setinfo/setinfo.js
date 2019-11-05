@@ -65,7 +65,9 @@ Page({
       dataType: 'json',
       success(res) {
         if ('0000' == res.data.code) {
-          //跳转结算记录
+          wx.navigateTo({
+            url: '/pages/index/index',
+          })
         }else{
           that.doSetView();
         }

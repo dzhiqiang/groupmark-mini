@@ -55,6 +55,12 @@ Page({
       url: '/pages/set/setinfo/setinfo?groupId='+groupId
     });
   },
+  setDetailList:function(e){
+    var groupId = e.target.dataset.groupid;
+    wx.navigateTo({
+      url: '/pages/set/settleList/settleList?groupId=' + groupId
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

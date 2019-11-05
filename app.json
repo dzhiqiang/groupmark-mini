@@ -5,12 +5,10 @@
     "pages/mygroup/mygrouplist/mygrouplist",
     "pages/mygroup/mygroupcreate/mygroupcreate",
     "pages/create/create",
-    "pages/account/account",
-    "pages/account/accountinfo/accountinfo",
-    "pages/share/share",
     "pages/share/shareinfo/shareinfo",
     "pages/set/setinfo/setinfo",
-    "pages/set/setShare/setShare"
+    "pages/set/settleInfo/settleInfo",
+    "pages/set/settleList/settleList"
   ],
   "window": {
     "backgroundTextStyle": "light",

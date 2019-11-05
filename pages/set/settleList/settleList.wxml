@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view wx:for-items="{{settleList}}" class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <navigator class="navigator" url="/pages/set/settleInfo/settleInfo?settleId={{item.id}}" hover-class="navigator-hover">
+                <text class="navigator_name">{{item.nickName}}结算{{item.setNum}}笔总金额{{item.setMoney}}元</text>
+                <image class="navigator_arrow" src="/pages/resources/arrow.png" background-size="cover" />
+              </navigator>
+            </view>
+          </view>
+        </view>
+    </view>
+  </view>
+</view>

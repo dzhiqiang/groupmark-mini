@@ -1,4 +1,4 @@
-// pages/set/setShare/setShare.js
+// pages/set/setDetail/setDetail.js
 Page({
 
   /**
@@ -12,9 +12,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      groupId: options.groupId
+    });
+    this.settleList();
   },
-
+  settleList: function () {
+    var that = this;
+    var groupId = this.data.groupId;
+    var token = wx.getStorageSync('token');
+    wx.request({
+      url: 'http://localhost:8080/groupmark/group/settleList',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token,
+        groupId: groupId
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          that.setData({
+            settleList: res.data.settleList
+          });
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
