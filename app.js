@@ -1,5 +1,5 @@
 //app.js
-
+import { ENV } from './pages/profile.js'
 App({
   onLaunch: function () {
     this.onLogin();
@@ -23,7 +23,7 @@ App({
                 this.userInfoReadyCallback(userInfoRes);
               }
               wx.request({
-                url: 'http://localhost:8080/groupmark/login/login',
+                url: ENV.domain + '/groupmark/login/login',
                 method: 'POST',
                 header: {
                   'content-type': 'application/x-www-form-urlencoded'
