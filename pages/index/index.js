@@ -1,13 +1,17 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+import { ENV } from '../profile.js'
 Page({
   data: {
     myGroupList:[],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+  onPullDownRefresh: function () {
+    this.onShow();
+    wx.stopPullDownRefresh();
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -68,7 +72,7 @@ Page({
     var that = this;
     var token = wx.getStorageSync('token');
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/myGroupView',
+      url: ENV.domain + '/groupmark/group/myGroupView',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'

@@ -1,4 +1,5 @@
 // pages/mygroup/mygroupinfo/mygroupinfo.js
+import { ENV } from '../../profile.js'
 Page({
 
   /**
@@ -13,17 +14,48 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      groupName: options.groupName,
       groupId: options.groupId
     })
+    this.loadGroupName();
     this.loadMember();
+  },
+  loadGroupName:function(){
+    var that = this;
+    var token = wx.getStorageSync('token');
+    var groupId = this.data.groupId;
+    wx.request({
+      url: ENV.domain + '/groupmark/group/groupInfo',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        token: token,
+        groupId: groupId
+      },
+      dataType: 'json',
+      success(res) {
+        if ('0000' == res.data.code) {
+          that.setData({
+            groupName: res.data.gmGroup.groupName,
+            deleteFlag: res.data.gmGroup.deleteFlag
+          })
+        } else if ('0014' == res.data.code) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg
+          });
+          that.loadGroupName();
+        }
+      }
+    })
   },
   loadMember : function(){
     var that = this;
     var token = wx.getStorageSync('token');
     var groupId = this.data.groupId;
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/myGroupMember',
+      url: ENV.domain + '/groupmark/group/myGroupMember',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -55,7 +87,7 @@ Page({
       return;
     }
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/addGroupMember',
+      url: ENV.domain + '/groupmark/group/addGroupMember',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -98,11 +130,12 @@ Page({
   modifyMemberName:function(e){
     var groupmemid = e.target.dataset.groupmemid;
     var groupMemberList = this.data.groupMemberList;
+    var groupId = this.data.groupId;
     var token = wx.getStorageSync('token');
     groupMemberList.forEach(member => {
       if (groupmemid == member.id) {
         wx.request({
-          url: 'http://localhost:8080/groupmark/group/modifyGroupMemberName',
+          url: ENV.domain + '/groupmark/group/modifyGroupMemberName',
           method: 'POST',
           header: {
             'content-type': 'application/x-www-form-urlencoded'
@@ -110,7 +143,8 @@ Page({
           data: {
             token: token,
             groupMemberId: groupmemid,
-            groupMemberName: member.memberName
+            groupMemberName: member.memberName,
+            groupId: groupId
           },
           dataType: 'json'
         })
@@ -121,20 +155,22 @@ Page({
     var that = this;
     var token = wx.getStorageSync('token');
     var groupmemid = e.target.dataset.groupmemid;
+    var groupId = that.data.groupId;
     wx.showModal({
       title: '提示',
       content: '确定要删除吗?',
       success:function(e){
         if(e.confirm){
           wx.request({
-            url: 'http://localhost:8080/groupmark/group/deleteMember',
+            url: ENV.domain + '/groupmark/group/deleteMember',
             method: 'POST',
             header: {
               'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
               token: token,
-              groupMemberId: groupmemid
+              groupMemberId: groupmemid,
+              groupId: groupId
             },
             dataType: 'json',
             success :function(){
@@ -155,7 +191,7 @@ Page({
       success: function (e) {
         if (e.confirm) {
           wx.request({
-            url: 'http://localhost:8080/groupmark/group/deleteGroup',
+            url: ENV.domain + '/groupmark/group/deleteGroup',
             method: 'POST',
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -188,7 +224,7 @@ Page({
     var token = wx.getStorageSync('token');
     var groupId = this.data.groupId;
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/modifyGroupName',
+      url: ENV.domain + '/groupmark/group/modifyGroupName',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'

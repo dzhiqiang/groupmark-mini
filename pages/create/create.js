@@ -1,4 +1,5 @@
 // pages/create/create.js
+import { ENV } from '../profile.js'
 Page({
 
   /**
@@ -283,7 +284,7 @@ Page({
       partDetail: JSON.stringify(partDetailMoneyList)
     };
     wx.request({
-      url: 'http://localhost:8080/groupmark/detail/create',
+      url: ENV.domain + '/groupmark/detail/create',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -323,7 +324,7 @@ Page({
     var detailId = options.detailId;
     var token = wx.getStorageSync('token');
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/myGroupMember',
+      url: ENV.domain + '/groupmark/group/myGroupMember',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'

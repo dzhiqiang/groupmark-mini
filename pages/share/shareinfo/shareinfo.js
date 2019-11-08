@@ -1,4 +1,5 @@
 // pages/share/shareinfo/shareinfo.js
+import { ENV } from '../../profile.js'
 Page({
 
   /**
@@ -146,6 +147,7 @@ Page({
     })
   },
   saveDetail: function (e) {
+    var that = this;
     var moneyValue = this.data.moneyValue;
     this.setData({
       submitDisabled: !this.data.submitDisabled
@@ -275,7 +277,7 @@ Page({
       partDetail: JSON.stringify(partDetailMoneyList)
     };
     wx.request({
-      url: 'http://localhost:8080/groupmark/detail/create',
+      url: ENV.domain + '/groupmark/detail/create',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -291,6 +293,12 @@ Page({
           wx.navigateBack({
             delta: 1
           })
+        } else if ('0014' == res.data.code){
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg
+          });
+          that.loadDetail();
         }
       },
       fail(res) {
@@ -314,7 +322,7 @@ Page({
       success: function (e) {
         if (e.confirm) {
           wx.request({
-            url: 'http://localhost:8080/groupmark/detail/deleteDetail',
+            url: ENV.domain + '/groupmark/detail/deleteDetail',
             method: 'POST',
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -338,17 +346,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      id: options.detailId,
+      groupId: options.groupId
+    });
+    this.loadDetail();
+  },
+  loadDetail:function(){
     var that = this;
-    var detailId = options.detailId;
+    var detailId = that.data.id;
     var token = wx.getStorageSync('token');
     wx.request({
-      url: 'http://localhost:8080/groupmark/detail/detailInfo',
+      url: ENV.domain + '/groupmark/detail/detailInfo',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        token : token,
+        token: token,
         detailId: detailId
       },
       dataType: 'json',
@@ -358,17 +373,15 @@ Page({
           var partPayer = [];
           var muchPeoplePayer = [];
           var groupMemberList = detailInfoJson.memberMoneyList;
-          groupMemberList.forEach(groupMember =>{
+          groupMemberList.forEach(groupMember => {
             if (groupMember.partChecked) {
               partPayer.push(groupMember.memberName);
             }
-            if (groupMember.muchPeopleChecked){
+            if (groupMember.muchPeopleChecked) {
               muchPeoplePayer.push(groupMember.memberName);
             }
           });
           that.setData({
-            id: detailInfoJson.id,
-            groupId: detailInfoJson.groupId,
             groupMemberList: groupMemberList,
             partPlain: !detailInfoJson.partFlag,
             partShowView: detailInfoJson.partFlag,
@@ -378,13 +391,14 @@ Page({
             project: detailInfoJson.project,
             remark: detailInfoJson.remark,
             partPayer: partPayer,
-            muchPeoplePayer: muchPeoplePayer
+            muchPeoplePayer: muchPeoplePayer,
+            modifyFlag: detailInfoJson.modifyFlag,
+            deleteFlag: detailInfoJson.deleteFlag
           })
         }
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

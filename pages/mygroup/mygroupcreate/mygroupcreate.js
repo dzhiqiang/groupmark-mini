@@ -1,4 +1,5 @@
 // pages/mygroup/mygroupcreate/mygroupcreate.js
+import { ENV } from '../../profile.js'
 const app = getApp()
 Page({
 
@@ -60,7 +61,7 @@ Page({
       return;
     }
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/create',
+      url: ENV.domain + '/groupmark/group/create',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'

@@ -1,4 +1,5 @@
 // pages/mygroup/mygrouplist/mygrouplist.js
+import { ENV } from '../../profile.js'
 Page({
 
   /**
@@ -47,7 +48,7 @@ Page({
     var token = wx.getStorageSync('token');
     var groupId = this.data.groupId;
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/groupInfo',
+      url: ENV.domain + '/groupmark/group/groupInfo',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -71,7 +72,7 @@ Page({
     var token = wx.getStorageSync('token');
     var groupId = this.data.groupId;
     wx.request({
-      url: 'http://localhost:8080/groupmark/detail/detailList',
+      url: ENV.domain + '/groupmark/detail/detailList',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'

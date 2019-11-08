@@ -28,7 +28,7 @@
       </view>
       <view class="btn-area">
         <view class="button-wrapper">
-          <button type="warn" bindtap="warn" bindtap="deleteGroup">删除此团
+          <button type="warn"  wx:if="{{deleteFlag}}" bindtap="warn" bindtap="deleteGroup">删除此团
           </button>
         </view>
       </view>

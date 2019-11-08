@@ -1,4 +1,5 @@
 // pages/set/settleInfo/settleInfo.js
+import { ENV } from '../../profile.js'
 Page({
 
   /**
@@ -22,7 +23,7 @@ Page({
     var settleId = this.data.settleId;
     var token = wx.getStorageSync('token');
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/settleInfo',
+      url: ENV.domain + '/groupmark/group/settleInfo',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'

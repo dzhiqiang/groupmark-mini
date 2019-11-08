@@ -1,4 +1,5 @@
 // pages/set/setinfo/setinfo.js
+import { ENV } from '../../profile.js'
 Page({
 
   /**
@@ -24,7 +25,7 @@ Page({
     var groupId = that.data.groupId;
     var token = wx.getStorageSync('token');
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/doSet',
+      url: ENV.domain + '/groupmark/group/doSet',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -52,7 +53,7 @@ Page({
     var groupId = that.data.groupId;
     var detailIdList = that.data.detailIdList;
     wx.request({
-      url: 'http://localhost:8080/groupmark/group/setDetail',
+      url: ENV.domain + '/groupmark/group/setDetail',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'

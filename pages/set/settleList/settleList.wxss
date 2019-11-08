@@ -1,1 +1,7 @@
 /* pages/set/settleList/settleList.wxss */
+.noneSetList{
+  margin: 0 auto;
+  text-align: center;
+  font-size: 120rpx;
+  color:#CCCCCC;
+}

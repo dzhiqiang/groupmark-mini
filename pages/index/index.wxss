@@ -43,3 +43,9 @@ button.mini-btn-rightbutton {
   padding-left: 10px;
   padding-right: 10px;
 }
+.noneGroup{
+  margin: 0 auto;
+  text-align: center;
+  font-size: 120rpx;
+  color:#CCCCCC;
+}
