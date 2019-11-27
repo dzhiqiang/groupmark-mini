@@ -50,17 +50,41 @@ Page({
     })
   },
   toCreateGroup: function (e) {
+    var hasUserInfo = this.data.hasUserInfo;
+    if (!hasUserInfo){
+      wx.showToast({
+        icon: 'none',
+        title: '请授权登录!'
+      });
+      return;
+    }
     wx.navigateTo({
       url: '/pages/mygroup/mygroupcreate/mygroupcreate'
     });
   },
   setDetail:function(e){
+    var hasUserInfo = this.data.hasUserInfo;
+    if (!hasUserInfo) {
+      wx.showToast({
+        icon: 'none',
+        title: '请授权登录!'
+      });
+      return;
+    }
     var groupId = e.target.dataset.groupid;
     wx.navigateTo({
       url: '/pages/set/setinfo/setinfo?groupId='+groupId
     });
   },
   setDetailList:function(e){
+    var hasUserInfo = this.data.hasUserInfo;
+    if (!hasUserInfo) {
+      wx.showToast({
+        icon: 'none',
+        title: '请授权登录!'
+      });
+      return;
+    }
     var groupId = e.target.dataset.groupid;
     wx.navigateTo({
       url: '/pages/set/settleList/settleList?groupId=' + groupId
