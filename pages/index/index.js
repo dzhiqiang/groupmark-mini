@@ -14,12 +14,26 @@ Page({
     wx.stopPullDownRefresh();
   },
   onLoad: function () {
+    this.logining();
+    this.loadUserInfo();
+  },
+  logining : function(){
+    wx.showLoading({
+      mask: true,
+      title: '登录中',
+    });
+    app.loginReadyCallback = res => {
+      wx.hideLoading()
+      this.showGroupList();
+    }
+  },
+  loadUserInfo : function(){
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -94,6 +108,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onShow: function () {
+    var token = wx.getStorageSync('token');
+    if(token){
+      this.showGroupList();
+    }
+  },
+  showGroupList:function(){
     var that = this;
     var token = wx.getStorageSync('token');
     wx.request({

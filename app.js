@@ -8,6 +8,7 @@ App({
     userInfo: null
   },
   onLogin:function(){
+    var that = this;
     // 登录
     wx.login({
       success: res => {
@@ -26,6 +27,9 @@ App({
             success(loginRes) {
               if (loginRes.data.code == '0000') {
                 wx.setStorageSync('token', loginRes.data.token)
+                if (that.loginReadyCallback) {
+                  that.loginReadyCallback(res)
+                }
               }
             }
           })
