@@ -81,6 +81,11 @@ Page({
           wx.redirectTo({
             url: '/pages/index/index'
           });
+        }else{
+          that.setData({
+            'dialog.hidden': false,
+            'dialog.content': res.data.msg
+          })
         }
       }
     })

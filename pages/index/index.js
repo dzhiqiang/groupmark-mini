@@ -18,13 +18,15 @@ Page({
     this.loadUserInfo();
   },
   logining : function(){
-    wx.showLoading({
-      mask: true,
-      title: '登录中',
-    });
-    app.loginReadyCallback = res => {
-      wx.hideLoading()
-      this.showGroupList();
+    if (!app.globalData.login){
+      wx.showLoading({
+        mask: true,
+        title: '登录中',
+      });
+      app.loginReadyCallback = res => {
+        wx.hideLoading();
+        this.showGroupList();
+      }
     }
   },
   loadUserInfo : function(){

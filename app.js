@@ -5,7 +5,8 @@ App({
     this.onLogin();
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    login : false
   },
   onLogin:function(){
     var that = this;
@@ -26,7 +27,8 @@ App({
             dataType: 'json',
             success(loginRes) {
               if (loginRes.data.code == '0000') {
-                wx.setStorageSync('token', loginRes.data.token)
+                wx.setStorageSync('token', loginRes.data.token);
+                that.globalData.login = true;
                 if (that.loginReadyCallback) {
                   that.loginReadyCallback(res)
                 }

@@ -40,7 +40,7 @@ Page({
             groupName: res.data.gmGroup.groupName,
             deleteFlag: res.data.gmGroup.deleteFlag
           })
-        } else if ('0014' == res.data.code) {
+        } else{
           wx.showToast({
             icon: 'none',
             title: res.data.msg
@@ -234,7 +234,15 @@ Page({
         groupId: groupId,
         groupName: groupName.trim()
       },
-      dataType: 'json'
+      dataType: 'json',
+      success(res) {
+        if ('0000' != res.data.code) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg
+          });
+        }
+      }
     })
   },
   /**
