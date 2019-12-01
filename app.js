@@ -30,8 +30,10 @@ App({
                 wx.setStorageSync('token', loginRes.data.token);
                 that.globalData.login = true;
                 if (that.loginReadyCallback) {
-                  that.loginReadyCallback(res)
+                  that.loginReadyCallback(loginRes)
                 }
+              }else{
+                that.loginFailCallback()
               }
             }
           })

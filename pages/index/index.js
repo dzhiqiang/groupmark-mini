@@ -18,6 +18,9 @@ Page({
     this.loadUserInfo();
   },
   logining : function(){
+    app.loginFailCallback = () => {
+      wx.hideLoading();
+    }
     if (!app.globalData.login){
       wx.showLoading({
         mask: true,
